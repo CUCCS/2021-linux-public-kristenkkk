@@ -76,21 +76,22 @@ https://asciinema.org/a/FUFayuic9nPco8kUtsg3g4qZ5
 
 #### 1、如何添加一个用户并使其具备sudo执行程序的权限？
 
-adduser newusr
+```sudo adduser newusr```
 
-newusr ALL=(ALL) ALL
+```sudo usermod -G sudo -a newusr```
 
 #### 2、如何将一个用户添加到一个用户组？
 
-useradd -G {group-name} username
+```sudo useradd -G {group-name} username```
 
 #### 3、如何查看当前系统的分区表和文件系统详细信息？
 
-df -T -h
+```df -T -h```
+```sudo fdisk -l```
 
 #### 4、如何实现开机自动挂载Virtualbox的共享目录分区？
 
-在文件 /etc/rc.local 中（用root用户）追加如下命令 mount -t vboxsf java /mnt/share
+在文件 ```/etc/rc.local``` 中（用root用户）追加如下命令 ```mount -t vboxsf java /mnt/share```
 
 #### 5、基于LVM（逻辑分卷管理）的分区如何实现动态扩容和缩减容量？
 
@@ -100,11 +101,11 @@ df -T -h
 
 #### 6、如何通过systemd设置实现在网络连通时运行一个指定脚本，在网络断开时运行另一个脚本？
 
-不会
+修改systemd-networkd中的Service ExecStartPost=网络联通时运行的指定脚本 ExecStopPost=网络断开时运行的另一个脚本
 
 #### 7、如何通过systemd设置实现一个脚本在任何情况下被杀死之后会立即重新启动？实现杀不死？
 
-不会
+```sudo systemctl vi scriptname Restart = always sudo systemctl daemon-reload```
 
 ---
 
@@ -127,6 +128,6 @@ df -T -h
 
 #### 2、网页中的例子的 xxx.service不可用
 
-比如 bluetooth.service、httpd.service
+比如 ```bluetooth.service```、```httpd.service```
 
-我尝试在网上搜索如何下载安装httpd，但是失败，我询问同学，同学告诉我用ufw.service代替
+我尝试在网上搜索如何下载安装httpd，但是失败，我询问同学，同学告诉我用```ufw.service```代替
